@@ -1,7 +1,4 @@
-// pages/index.tsx
-import { NextPage } from 'next';
-import Layout from './components/layout';
-import Section from './components/section';
+import Section from './components/Section';
 
 type ArticleBlockData = {
   summary: string;
@@ -27,15 +24,13 @@ const dummyPapers: ArticleBlockData[] = [
   { summary: '最新論文3', link: 'https://example.com/paper3' },
 ];
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
-    <Layout currentUpdate={1}>
+    <>
       <h1>SummAI 最新更新 (更新1)</h1>
       <Section title="ニュース" articles={dummyNews} />
       <Section title="技術記事" articles={dummyTech} />
       <Section title="論文" articles={dummyPapers} />
-    </Layout>
+    </>
   );
-};
-
-export default Home;
+}

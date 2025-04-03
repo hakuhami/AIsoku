@@ -1,7 +1,4 @@
-// pages/update2.tsx
-import { NextPage } from 'next';
-import Layout from './components/layout';
-import Section from './components/section';
+import Section from '../components/Section';
 
 type ArticleBlockData = {
   summary: string;
@@ -26,15 +23,13 @@ const dummyPapers: ArticleBlockData[] = [
   { summary: '論文5-3', link: 'https://example.com/paper2-3' },
 ];
 
-const Version5: NextPage = () => {
+export default function Version5() {
   return (
-    <Layout currentUpdate={2}>
+    <>
       <h1>SummAI 更新 (更新5)</h1>
       <Section title="ニュース" articles={dummyNews} />
       <Section title="技術記事" articles={dummyTech} />
       <Section title="論文" articles={dummyPapers} />
-    </Layout>
+    </>
   );
-};
-
-export default Version5;
+}
