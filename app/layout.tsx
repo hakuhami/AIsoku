@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'SummAI - 最新情報まとめ',
-  description: 'ニュース、技術記事、論文の要約を提供するサービス',
+  title: 'AIsoku - AI最新情報まとめ',
+  description: 'AIに関するニュース、技術記事、論文の要約を毎日提供するサービス',
 }
 
 export default function RootLayout({

@@ -26,7 +26,7 @@ const dummyPapers: ArticleBlockData[] = [
 export default function Version3() {
   return (
     <>
-      <h1>SummAI 更新 (更新3)</h1>
+      <h1>AIsoku 更新 (更新3)</h1>
       <Section title="ニュース" articles={dummyNews} />
       <Section title="技術記事" articles={dummyTech} />
       <Section title="論文" articles={dummyPapers} />
