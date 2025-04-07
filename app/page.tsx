@@ -17,15 +17,17 @@ const Home: NextPage = () => {
       <Section
         title="ニュース"
         articles={data.news.map(article => ({
-          summary: article.content,
-          link: article.url,
+          title: article.title,
+          content: article.content,
+          url: article.url,
         }))}
       />
       <Section
         title="技術記事"
         articles={data.tech.map(article => ({
-          summary: article.content,
-          link: article.url,
+          title: article.title,
+          content: article.content,
+          url: article.url,
         }))}
       />
     </>

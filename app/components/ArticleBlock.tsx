@@ -1,8 +1,9 @@
 import React from 'react';
 
 export type ArticleBlockData = {
-  summary: string;
-  link: string;
+  title: string;
+  content: string;
+  url: string;
 };
 
 type ArticleBlockProps = {
@@ -20,13 +21,18 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({ data }) => {
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
       transition: 'transform 0.2s ease-in-out'
     },
-    summary: {
+    title: {
+      fontSize: '1.2rem',
+      marginBottom: '0.5rem',
+      fontWeight: 'bold',
+    },
+    content: {
       fontSize: '16px',
       lineHeight: '1.5',
       color: '#333',
       margin: '0 0 12px 0'
     },
-    link: {
+    url: {
       display: 'inline-block',
       color: '#0070f3',
       textDecoration: 'none',
@@ -35,17 +41,12 @@ const ArticleBlock: React.FC<ArticleBlockProps> = ({ data }) => {
       padding: '4px 0'
     }
   };
-
   return (
     <div style={styles.articleBlock}>
-      <p style={styles.summary}>{data.summary}</p>
-      <a 
-        href={data.link} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        style={styles.link}
-      >
-        Read More
+      <h4 style={styles.title}>{data.title}</h4>
+      <p style={styles.content}>{data.content}</p>
+      <a href={data.url} target="_blank" rel="noopener noreferrer" style={styles.url}>
+        URL: {data.url}
       </a>
     </div>
   );
