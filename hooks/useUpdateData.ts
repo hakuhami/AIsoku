@@ -56,11 +56,21 @@ export function useUpdateData(updateId: string) {
 
         // フィールド名 "1st", "2st", "3st" をまとめて Article[] に変換
         const transformDoc = (docObj: Record<string, Article>) => {
-          return Object.values(docObj).map((v) => ({
-            title: v.title || '',
-            content: v.content || '',
-            url: v.url || '',
-          }));
+          // キーを数値順にソート（"1st", "2st", "3st", ...）
+          const sortedKeys = Object.keys(docObj).sort((a, b) => {
+            const numA = parseInt(a.match(/\d+/)?.[0] || "0", 10);
+            const numB = parseInt(b.match(/\d+/)?.[0] || "0", 10);
+            return numA - numB;
+          });
+          
+          return sortedKeys.map(key => {
+            const v = docObj[key];
+            return {
+              title: v.title || '',
+              content: v.content || '',
+              url: v.url || '',
+            };
+          });
         };
 
         const newsArr = transformDoc(newsData);
