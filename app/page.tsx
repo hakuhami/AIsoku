@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <h1>AIsoku - Latest Update (v1)</h1>
+      <h1>AIsoku - 本日の更新</h1>
       <Section
         title="ニュース"
         articles={data.news.map(article => ({

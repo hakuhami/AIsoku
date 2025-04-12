@@ -32,10 +32,8 @@ export function useUpdateData(updateId: string) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // "v1"などのコレクションの中の "news", "tech" ドキュメントを取得
         const newsDocRef = doc(db, updateId, 'news');
         const techDocRef = doc(db, updateId, 'tech');
-        // papersDocRef も必要なら定義: doc(db, updateId, 'papers');
 
         const [newsSnap, techSnap] = await Promise.all([
           getDoc(newsDocRef),
@@ -49,14 +47,13 @@ export function useUpdateData(updateId: string) {
           console.warn(`No 'tech' doc found for ${updateId}`);
         }
 
-        // 各doc.data() は { "1st": {...}, "2st": {...}, "3st": {...} } のようなオブジェクト
+        // 各doc.data() は { "1st": {...}, "2nd": {...}, "3rd": {...} } のようなオブジェクト
         const newsData = newsSnap.exists() ? (newsSnap.data() as Record<string, Article>) : {};
         const techData = techSnap.exists() ? (techSnap.data() as Record<string, Article>) : {};
-        // const papersData = papersSnap.exists() ? (papersSnap.data() as Record<string, Article>) : {};
 
-        // フィールド名 "1st", "2st", "3st" をまとめて Article[] に変換
+        // フィールド名 "1st", "2nd", "3rd" をまとめて Article[] に変換
         const transformDoc = (docObj: Record<string, Article>) => {
-          // キーを数値順にソート（"1st", "2st", "3st", ...）
+          // キーを数値順にソート（"1st", "2nd", "3rd", ...）
           const sortedKeys = Object.keys(docObj).sort((a, b) => {
             const numA = parseInt(a.match(/\d+/)?.[0] || "0", 10);
             const numB = parseInt(b.match(/\d+/)?.[0] || "0", 10);
@@ -75,12 +72,10 @@ export function useUpdateData(updateId: string) {
 
         const newsArr = transformDoc(newsData);
         const techArr = transformDoc(techData);
-        // const papersArr = transformDoc(papersData);
 
         setData({
           news: newsArr,
           tech: techArr,
-          // papers: papersArr
         });
       } catch (err: unknown) {
         setError(`Error fetching data: ${err instanceof Error ? err.message : 'Unknown error'}`);

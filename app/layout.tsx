@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'AIsoku - AI最新情報まとめ',
-  description: 'AIに関するニュース、技術記事、論文の要約を毎日提供するサービス',
+  description: 'AIに関するニュースや技術記事の要約を毎日提供するサービス',
 }
 
 export default function RootLayout({
