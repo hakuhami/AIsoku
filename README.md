@@ -11,15 +11,15 @@ LLMによる情報収集機能 (Host→ Cloud run)：https://github.com/hakuhami
 
 ```mermaid
 flowchart TD
-    A["<AIsoku app>
+    A["<u>AIsoku app</u>
     (Vercel Hosting)
-    (TypeScript (Next.js))"]
+    (TypeScript (Next.js))"]:::thick
     
-    B["Firestore
+    B["<u>Firestore</u>
     (Perplexity が収集・要約
     した記事情報の DB)"]
 
-    C["LLM の情報収集モジュール
+    C["<u>LLM の情報収集モジュール</u>
     ・Perplexity API
     (sonar-pro)
     ・Cloud Run Jobs
@@ -34,6 +34,8 @@ flowchart TD
     C -->|"毎朝8時書き込み（更新）"| B
     B -->|"全情報（5日分の記事）
     をレスポンス"|A
+
+    classDef thick stroke-width:10px
 ```
 
 ## 技術スタック
