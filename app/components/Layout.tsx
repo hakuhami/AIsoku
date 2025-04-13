@@ -1,6 +1,8 @@
-// components/Layout.tsx
-import React, { ReactNode } from 'react';
+'use client';
+
+import React, { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type LayoutProps = {
   children: ReactNode;
@@ -9,6 +11,25 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children, currentUpdate }) => {
   const updatePages = [1, 2, 3, 4, 5];
+  const pathname = usePathname();
+  const [activeUpdate, setActiveUpdate] = useState(1);
+  
+  // パスから現在の更新番号を取得し、状態として保持（更新 {num} の背景色を付けるため）
+  useEffect(() => {
+    const getUpdateFromPath = (): number => {      
+      // /v2, /v3 などのパターンから数字を抽出
+      const match = pathname?.match(/\/v(\d+)/);
+      if (match && match[1]) {
+        return parseInt(match[1], 10);
+      }
+      
+      return 1; // デフォルト値（トップページの場合）
+    };
+    
+    // パスから計算した値を優先し、props.currentUpdateはフォールバックとして使用
+    const newActiveUpdate = getUpdateFromPath();
+    setActiveUpdate(newActiveUpdate);
+  }, [pathname, currentUpdate]);
   
   const styles = {
     container: {
@@ -65,19 +86,21 @@ const Layout: React.FC<LayoutProps> = ({ children, currentUpdate }) => {
       <aside style={styles.sidebar}>
         <h2 style={styles.sidebarTitle}>更新一覧</h2>
         <ul style={styles.navList}>
-          {updatePages.map((num) => (
-            <li key={num} style={styles.navItem}>
-              <Link 
-                href={num === 1 ? '/' : `/v${num}`} 
-                style={{
-                  ...styles.navLink,
-                  ...(num === currentUpdate ? styles.activeLink : {})
-                }}
-              >
-                更新 {num}
-              </Link>
-            </li>
-          ))}
+          {updatePages.map((num) => {            
+            return (
+              <li key={num} style={styles.navItem}>
+                <Link 
+                  href={num === 1 ? '/' : `/v${num}`} 
+                  style={{
+                    ...styles.navLink,
+                    ...(num === activeUpdate ? styles.activeLink : {})
+                  }}
+                >
+                  更新 {num}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </aside>
       <main style={styles.main}>

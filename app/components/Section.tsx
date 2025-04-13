@@ -1,4 +1,3 @@
-// components/Section.tsx
 import React from 'react';
 import ArticleBlock, { ArticleBlockData } from './ArticleBlock';
 

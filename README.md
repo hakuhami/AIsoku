@@ -11,7 +11,7 @@ LLMによる情報収集機能 (Host→ Cloud run)：https://github.com/hakuhami
 
 ```mermaid
 flowchart TD
-    A["AIsoku app
+    A["<AIsoku app>
     (Vercel Hosting)
     (TypeScript (Next.js))"]
     
