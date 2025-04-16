@@ -22,7 +22,7 @@ flowchart TD
     C["<u>LLM の情報収集モジュール</u>
     ・Perplexity API
     (sonar-pro)
-    ・Cloud Run Jobs
+    ・Cloud Run Job
     　　によるバッジ処理
     ・毎日午前8時にスケジュ
     　　ール実行し、Firestore
