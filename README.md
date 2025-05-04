@@ -43,5 +43,6 @@ flowchart TD
 - **フロントエンド**: Next.js
 - **LLM**: Perplexity (sonor-pro)
 - **情報更新のバッジ処理**: Cloud run job
-- **データベース**: Firestore
+- **データベース**: Firebase Firestore
+- **認証機能**: Firebase Authentication
 - **デプロイ**: Vercel
