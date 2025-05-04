@@ -61,10 +61,6 @@ const Home: NextPage = () => {
     );
   }
 
-  if (loading) return <div>Loading data from Firebase...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!data) return <div>No data available.</div>;
-
   return (
     <div style={{ padding: '20px' }}>
       <div style={{ 
@@ -92,22 +88,39 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <Section
-        title="ニュース"
-        articles={data.news.map(article => ({
-          title: article.title,
-          content: article.content,
-          url: article.url,
-        }))}
-      />
-      <Section
-        title="技術記事"
-        articles={data.tech.map(article => ({
-          title: article.title,
-          content: article.content,
-          url: article.url,
-        }))}
-      />
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '50px 0' }}>
+          <div>データをロード中...</div>
+        </div>
+      ) : error ? (
+        <div style={{ textAlign: 'center', padding: '50px 0', color: 'red' }}>
+          <div>エラーが発生しました。しばらくしてから再度お試しください。</div>
+          <div style={{ fontSize: '0.8rem', marginTop: '10px' }}>{error}</div>
+        </div>
+      ) : !data ? (
+        <div style={{ textAlign: 'center', padding: '50px 0' }}>
+          <div>データがありません。</div>
+        </div>
+      ) : (
+        <>
+          <Section
+            title="ニュース"
+            articles={data.news.map(article => ({
+              title: article.title,
+              content: article.content,
+              url: article.url,
+            }))}
+          />
+          <Section
+            title="技術記事"
+            articles={data.tech.map(article => ({
+              title: article.title,
+              content: article.content,
+              url: article.url,
+            }))}
+          />
+        </>
+      )}
     </div>
   );
 };
